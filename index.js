@@ -1,11 +1,10 @@
-import fetch from 'node-fetch';
 import { readFileSync } from 'fs';
 
 const { apiToken } = JSON.parse(readFileSync('./config.json'));
 
 const uploadDocument = async (pathToFile) => {
     console.log('Uploading source document...');
-    const response = await fetch(`https://app.ontask.io/api/v2/documents`, {
+    const response = await fetch(`https://docubee.app/api/v2/documents`, {
         body: readFileSync(pathToFile),
         headers: {
             Authorization: apiToken,
@@ -20,7 +19,7 @@ const uploadDocument = async (pathToFile) => {
 
 const placeFieldsOnDocument = async (inputDocumentId) => {
     console.log('Placing fields on the document...');
-    const response = await fetch(`https://app.ontask.io/api/v2/documents/${inputDocumentId}/fields`, {
+    const response = await fetch(`https://docubee.app/api/v2/documents/${inputDocumentId}/fields`, {
         body: JSON.stringify({
             fields: [
                 {
@@ -57,7 +56,8 @@ const placeFieldsOnDocument = async (inputDocumentId) => {
             Authorization: apiToken,
             'Content-Type': 'application/json'
         },
-        method: 'PUT'
+        method: 'PUT',
+        duplex: 'half'
     });
 
     const { documentId } = await response.json();

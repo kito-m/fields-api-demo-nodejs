@@ -1,17 +1,17 @@
-# OnTask API Fields Demo with Node.js
+# Docubee API Fields Demo with Node.js
 
 ## Summary
 
-Using the OnTask API, fields can be placed on a document's placeholders which can be used in a fill & sign task. This allows you to programmatically create signature, date, checkbox, initial, and text fields that your users interact with during the workflow runtime.
+Using the Docubee API, fields can be placed on a document's placeholders which can be used in a fill & sign task. This allows you to programmatically create signature, date, checkbox, initial, and text fields that your users interact with during the workflow runtime.
 
 ## API Documentation
 
-Specifics about the OnTask API can be found in the official documentation at [docs.ontask.io](https://docs.ontask.io).
+Specifics about the Docubee API can be found in the official documentation at [docs.docubee.app](https://docs.ontask.io).
 
 The specific endpoints used in this sample are:
 
-- [Upload a Document](https://docs.ontask.io/?javascript#upload)
-- [Set Document Fields](https://docs.ontask.io/?javascript#fields)
+- [Upload a Document](https://docs.docubee.app/?javascript#upload)
+- [Set Document Fields](https://docs.docubee.app/?javascript#fields)
 
 ## Preparation
 
@@ -26,15 +26,8 @@ The specific endpoints used in this sample are:
     "apiToken": "<YOUR-API-TOKEN>"
 }
 ```
-
-### Install dependencies
-
-```shell
-npm install
-```
-
 ### Run the demo
 
 ```shell
-npm start
+node index.js
 ```
