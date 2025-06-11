@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 
-const { apiToken } = JSON.parse(readFileSync('./config.json'));
+const apiToken = "YOUR-API-TOKEN";
 
 const uploadDocument = async (pathToFile) => {
     console.log('Uploading source document...');
@@ -67,7 +67,7 @@ const placeFieldsOnDocument = async (inputDocumentId) => {
 
 (async () => {
     if (apiToken === '<YOUR-API-TOKEN>' || !apiToken) {
-        console.log('Error - Invalid token: Edit config.json and configure a valid API token.');
+        console.log('Error - Invalid token: Please set your API token.');
         process.exit(1);
     }
     const inputDocId = await uploadDocument('./documents/fields-doc.pdf');
