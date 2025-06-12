@@ -15,18 +15,10 @@ The specific endpoints used in this sample are:
 
 ## Preparation
 
-- An API key is generated for the group with at least the `Upload documents` and `Set document fields` permissions.
+- An API key is generated for the workspace with at least the `Upload documents` and `Set document fields` permissions.
+- An environment variable `YOUR_API_TOKEN` is set with the API key value. 
 
 ## Usage
-
-### Set your API token in `config.json`
-
-```json
-{
-    "apiToken": "<YOUR-API-TOKEN>"
-}
-```
-### Run the demo
 
 ```shell
 node index.js

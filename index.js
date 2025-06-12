@@ -1,16 +1,26 @@
-import { readFileSync } from 'fs';
+// Get your free API Key at: https://www.docubee.com/solutions/integrations/docubee-api
+// Full Docubee API Documentation: https://docs.docubee.app/#overview
+import { createReadStream } from 'fs';
 
-const apiToken = "YOUR-API-TOKEN";
+const docubeeUrl = 'https://docubee.app/api/v2';
+
+const apiToken = process.env.YOUR_API_TOKEN || "YOUR_API_TOKEN";
+
+if (apiToken === "YOUR_API_TOKEN") {
+    console.log('Error - Invalid token: Please set you API token environment variable.');
+    process.exit(1);
+}
 
 const uploadDocument = async (pathToFile) => {
     console.log('Uploading source document...');
-    const response = await fetch(`https://docubee.app/api/v2/documents`, {
-        body: readFileSync(pathToFile),
+    const response = await fetch(`${docubeeUrl}/documents`, {
+        body: createReadStream(pathToFile),
         headers: {
             Authorization: apiToken,
-            'Content-Type': 'application/pdf'
+            'Content-Type': 'application/pdf',
         },
-        method: 'POST'
+        method: 'POST',
+        duplex: 'half'
     });
     const { documentId } = await response.json();
     console.log(`The source document has been uploaded (documentId: ${documentId}).`);
@@ -19,7 +29,7 @@ const uploadDocument = async (pathToFile) => {
 
 const placeFieldsOnDocument = async (inputDocumentId) => {
     console.log('Placing fields on the document...');
-    const response = await fetch(`https://docubee.app/api/v2/documents/${inputDocumentId}/fields`, {
+    const response = await fetch(`${docubeeUrl}/documents/${inputDocumentId}/fields`, {
         body: JSON.stringify({
             fields: [
                 {
@@ -56,8 +66,7 @@ const placeFieldsOnDocument = async (inputDocumentId) => {
             Authorization: apiToken,
             'Content-Type': 'application/json'
         },
-        method: 'PUT',
-        duplex: 'half'
+        method: 'PUT'
     });
 
     const { documentId } = await response.json();
@@ -66,10 +75,6 @@ const placeFieldsOnDocument = async (inputDocumentId) => {
 }
 
 (async () => {
-    if (apiToken === '<YOUR-API-TOKEN>' || !apiToken) {
-        console.log('Error - Invalid token: Please set your API token.');
-        process.exit(1);
-    }
     const inputDocId = await uploadDocument('./documents/fields-doc.pdf');
     placeFieldsOnDocument(inputDocId);
 })();
