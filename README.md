@@ -1,3 +1,5 @@
+[<img src="https://cdn.docubee.app/static/docubee-logo.png" width="600"/>](https://docubee.app/signup?source=eSigApi)
+
 # Docubee API Fields Demo with Node.js
 
 ## Summary
