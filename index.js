@@ -2,18 +2,17 @@
 // Full Docubee API Documentation: https://docs.docubee.app/#overview
 import { createReadStream } from 'fs';
 
-const docubeeUrl = 'https://docubee.app/api/v2';
 
-const apiToken = process.env.YOUR_API_TOKEN || "YOUR_API_TOKEN";
+const apiToken = process.env.YOUR_API_TOKEN;
 
-if (apiToken === "YOUR_API_TOKEN") {
+if (!apiToken) {
     console.log('Error - Invalid token: Please set you API token environment variable.');
     process.exit(1);
 }
 
 const uploadDocument = async (pathToFile) => {
     console.log('Uploading source document...');
-    const response = await fetch(`${docubeeUrl}/documents`, {
+    const response = await fetch('https://docubee.app/api/v2/documents', {
         body: createReadStream(pathToFile),
         headers: {
             Authorization: apiToken,
@@ -29,7 +28,7 @@ const uploadDocument = async (pathToFile) => {
 
 const placeFieldsOnDocument = async (inputDocumentId) => {
     console.log('Placing fields on the document...');
-    const response = await fetch(`${docubeeUrl}/documents/${inputDocumentId}/fields`, {
+    const response = await fetch(`https://docubee.app/api/v2/documents/${inputDocumentId}/fields`, {
         body: JSON.stringify({
             fields: [
                 {
