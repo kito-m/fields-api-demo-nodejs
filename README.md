@@ -8,7 +8,7 @@ Using the Docubee API, fields can be placed on a document's placeholders which c
 
 ## API Documentation
 
-Specifics about the Docubee API can be found in the official documentation at [docs.docubee.app](https://docs.ontask.io).
+Specifics about the Docubee API can be found in the official documentation at [docs.docubee.app](https://docs.docubee.app).
 
 The specific endpoints used in this sample are:
 
